@@ -1284,6 +1284,7 @@ Linear separation is feasible if $\mathrm{rank}(\bold{A})=K$
  </ul>
  <aside class="notes">
 	 <ul><li> Two step for ICA the first one is to decorrelate the observed mixture signals</li>
+		<li>The second one is to make the whitened signals independent</li>
 		 <li> CP: the sources signals are IID so Diagonal assumption is OK</li>
 		 <li>Moreover, we know we can retrieve only up to a multiplicative factor</li>
 	 </ul>
@@ -1426,7 +1427,7 @@ $\phi_{IM}[\bold{y}(t)]=\mathbb{I}[\bold{y}(t)] \qquad\qquad\qquad\qquad\quad\qu
 			 <li>
 $\phi_{IM}[\bold{y}(t)]=\mathbb{I}[\bold{y}(t)] \qquad\qquad\qquad\qquad\quad\quad\texttt{(Canonical CF)}$</li>
 			 <li>$\phi_{IM}^{\circ}[\bold{y}(t)]=\sum_{k=1}^{K}\mathbb{H}[y_k(t)] \mathrm{~with~} \Sigma_{yy} = \bold{I} \quad\texttt{(Orthogonal contrast)}$</li>
-<li>$\phi_{JADE}^{\circ}[\bold{y}(t)]=\sum_{ijkl \neq iiii}(\kappa_{ijkl}^4[\bold{y}(t)])^2 \quad~~\quad\texttt{(Approximation of} ~ \phi^{\circ}_{IM}\texttt{)} $</li>
+<li>$\phi_{ICA}^{\circ}[\bold{y}(t)]=\sum_{ijkl \neq iiii}(\kappa_{ijkl}^4[\bold{y}(t)])^2 \quad~~\quad\texttt{(Approximation of} ~ \phi^{\circ}_{IM}\texttt{)} $</li>
 </ul>
 <!-- <h3 style='margin-top:0.5em;'>Descent algorithms ( Minimizing $\phi$ wrt. $\bold{B}$ or $\bold{U}$)</h3>
 <ul>
@@ -1467,7 +1468,7 @@ $\phi_{IM}[\bold{y}(t)]=\mathbb{I}[\bold{y}(t)] \qquad\qquad\qquad\qquad\quad\qu
 			 <li>
 $\phi_{IM}[\bold{y}(t)]=\mathbb{I}[\bold{y}(t)] \qquad\qquad\qquad\qquad\quad\quad\texttt{(Canonical CF)}$</li>
 			 <li>$\phi_{IM}^{\circ}[\bold{y}(t)]=\sum_{k=1}^{K}\mathbb{H}[y_k(t)] \mathrm{~with~} \Sigma_{yy} = \bold{I} \quad\texttt{(Orthogonal contrast)}$</li>
-<li>$\phi_{JADE}^{\circ}[\bold{y}(t)]=\sum_{ijkl \neq iiii}(\kappa_{ijkl}^4[\bold{y}(t)])^2 \quad~~\quad\texttt{(Approximation of} ~ \phi^{\circ}_{IM}\texttt{)} $</li>
+			 <li>$\phi_{ICA}^{\circ}[\bold{y}(t)]=\sum_{ijkl \neq iiii}(\kappa_{ijkl}^4[\bold{y}(t)])^2 \quad~~\quad\texttt{(Approximation of} ~ \phi^{\circ}_{IM}\texttt{)} $</li>
 </ul>
 <h3 style='margin-top:0.5em;'>Descent algorithms ( Minimizing $\phi$ wrt. $\bold{B}$ or $\bold{U}$)</h3>
 <ul>
@@ -1783,8 +1784,9 @@ $\phi_{IM}[\bold{y}(t)]=\mathbb{I}[\bold{y}(t)] \qquad\qquad\qquad\qquad\quad\qu
 		$
 		\begin{cases}
 		\mathbb{E}[\bold{s}(t)]=0 \\
-		\bold{R}_{ss}(\tau) = \mathbb{E}[\bold{s}(t+\tau)\bold{s}(t)^\top] = \mathrm{diag}(r_{s_k}(\tau))
-		\end{cases} \quad\texttt{(centered WSS vector process)}
+		\Sigma_{ss}(t) = \mathbb{E}[\bold{s}(t)\bold{s}(t)^\top] \\
+		\cancel{\bold{R}_{ss}(\tau) = \mathbb{E}[\bold{s}(t+\tau)\bold{s}(t)^\top] = \mathrm{diag}(r_{s_k}(\tau))}
+		\end{cases} \quad\texttt{(centered  ind. vector process)}
 		$
 	</li>
 	<li><strike>Canonical problem: we assume that $\cancel{\Sigma_{ss}=\bold{R}_{ss}(0)=\bold{I}}$</strike></li>
